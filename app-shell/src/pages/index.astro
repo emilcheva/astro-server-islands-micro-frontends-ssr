@@ -2,10 +2,10 @@
 import { Image } from "astro:assets";
 import userImg from "../images/user.avif";
 import mainProductImg from "../images/islands/thailand.avif";
-// import RoomAvailability from "../components/RoomAvailability.astro";
-// import RecommendedProducts from "../components/RecommendedProducts.astro";
-// import CustomerReviews from "../components/CustomerReviews.astro";
-// import Stars from "../components/Stars.astro";
+import RoomAvailability from "../components/RoomAvailability.astro";
+import RecommendedProducts from "../components/RecommendedProducts.astro";
+import CustomerReviews from "../components/CustomerReviews.astro";
+import Stars from "../components/Stars.astro";
 import AddToCart from "../components/Cart.astro";
 import CartCount from "../components/CartCount.astro";
 
@@ -280,27 +280,27 @@ const description = "A demo of Astro with Server Islands.";
                       </div>
                     </div>
                     <div class="text-sm">
-                      <!-- <RoomAvailability server:defer> -->
-                      <div
-                        class="text-sm text-center border border-transparent p-1 text-teal-300"
-                        slot="fallback"
-                      >
-                        <span class="space-x-0.5">
-                          <span
-                            class="inline-flex animate-[loading_1.4s_ease-in-out_infinite] rounded-full"
-                            >•</span
-                          >
-                          <span
-                            class="inline-flex animate-[loading_1.4s_ease-in-out_0.2s_infinite] rounded-full"
-                            >•</span
-                          >
-                          <span
-                            class="inline-flex animate-[loading_1.4s_ease-in-out_0.4s_infinite] rounded-full"
-                            >•</span
-                          >
-                        </span>
-                      </div>
-                      <!-- </RoomAvailability> -->
+                      <RoomAvailability server:defer>
+                        <div
+                          class="text-sm text-center border border-transparent p-1 text-teal-300"
+                          slot="fallback"
+                        >
+                          <span class="space-x-0.5">
+                            <span
+                              class="inline-flex animate-[loading_1.4s_ease-in-out_infinite] rounded-full"
+                              >•</span
+                            >
+                            <span
+                              class="inline-flex animate-[loading_1.4s_ease-in-out_0.2s_infinite] rounded-full"
+                              >•</span
+                            >
+                            <span
+                              class="inline-flex animate-[loading_1.4s_ease-in-out_0.4s_infinite] rounded-full"
+                              >•</span
+                            >
+                          </span>
+                        </div>
+                      </RoomAvailability>
                     </div>
                     <AddToCart server:defer />
                   </div>
@@ -311,7 +311,7 @@ const description = "A demo of Astro with Server Islands.";
                   >
                     Luxury Island Getaway
                   </h1>
-                  <!-- <Stars stars={5} /> -->
+                  <Stars stars={5} />
                   <div class="space-y-4 text-sm text-gray-400">
                     <p>
                       Whether you're looking for a romantic getaway, a party
@@ -340,7 +340,7 @@ const description = "A demo of Astro with Server Islands.";
                     >
                   </div>
                 </div>
-                <!-- <RecommendedProducts server:defer> -->
+                <RecommendedProducts server:defer>
                 <div class="space-y-6 pb-[5px]" slot="fallback">
                   <div class="space-y-2">
                     <div
@@ -395,7 +395,7 @@ const description = "A demo of Astro with Server Islands.";
                     </div>
                   </div>
                 </div>
-                <!-- </RecommendedProducts> -->
+                </RecommendedProducts>
               </div>
               <div>
                 <div class="relative">
@@ -409,7 +409,7 @@ const description = "A demo of Astro with Server Islands.";
                     >
                   </div>
                 </div>
-                <!-- <CustomerReviews server:defer>
+                <CustomerReviews server:defer>
                   <div class="space-y-6" slot="fallback">
                     <div
                       class="h-7 w-2/5 rounded-lg bg-gray-900 relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent"
@@ -430,7 +430,7 @@ const description = "A demo of Astro with Server Islands.";
                       </div>
                     </div>
                   </div>
-                </CustomerReviews> -->
+                </CustomerReviews>
               </div>
             </footer>
           </div>

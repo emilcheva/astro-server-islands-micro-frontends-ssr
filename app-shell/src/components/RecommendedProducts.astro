@@ -1,6 +1,6 @@
 ---
 import { rewriteMfUrls } from "../utils/rewriteMfUrls";
-const html = await fetch("http://localhost:7200").then(r => r.text());
+const html = await fetch("http://localhost:7200/recommended-products").then(r => r.text());
 const microfrontend = rewriteMfUrls(html, "http://localhost:7200");
 ---
 <Fragment set:html={microfrontend} />

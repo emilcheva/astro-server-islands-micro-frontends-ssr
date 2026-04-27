@@ -26,6 +26,18 @@ Each app is a pnpm/npm workspace package. In a real-world setup they could live 
 - Clicking "Book now" POSTs to `/api/add-to-cart` and stores the count in a cookie
 - `CartCount` reads the cookie on load and increments optimistically via the `add-to-cart` custom event
 
+## Why this approach works
+
+**Server-side composition** (each microfrontend is an independent HTTP server that produces HTML, stitched together by the shell at request time) is a proven production pattern used by teams at IKEA, Zalando, and others.
+
+- **True deployment independence** — each app can be built, deployed, and scaled separately without coordination. A team can ship a new version of `app-cart` without touching `app-shell` or `app-heading`.
+- **No shared runtime constraints** — microfrontends are not coupled by framework version or build tooling. `app-cart` is React, `app-heading` is Astro, and the shell doesn't care.
+- **Works without JavaScript** — composition happens on the server, so the initial page load is meaningful HTML even before any JS runs.
+- **Simple mental model** — each component boundary is just an HTTP fetch. No Module Federation configuration, no shared chunk graphs, no version negotiation.
+- **Graceful degradation via `server:defer`** — deferred components show shimmer skeletons immediately, then stream in their content. A slow or temporarily unavailable microfrontend degrades to a loading state rather than blocking the whole page.
+
+The main tradeoff is the **URL rewriting overhead** (`rewriteMfUrls`): HTML fetched from a microfrontend contains relative asset paths that must be made absolute before injection into the shell. In production this is typically solved at the infrastructure level (CDN, shared asset host, or unique path prefixes per app) rather than in application code.
+
 ## Features
 
 - Astro Server Islands (`server:defer`) for deferred, personalized content
