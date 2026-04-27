@@ -1,0 +1,6 @@
+---
+const html = await fetch("http://localhost:7200").then(r => r.text());
+const microfrontend = html.replace(/(src|href)="(\/?@[^"]+|\/src\/[^"]+)"/g, '$1="http://localhost:7200$2"');
+---
+
+<Fragment set:html={microfrontend} />

@@ -1,0 +1,29 @@
+<span class="sr-only">Cart</span>
+<span
+  id="cart-count"
+  hidden
+  class:list={[
+    "[&[hidden]]:hidden",
+    "flex h-4 min-w-4 px-1 items-center justify-center rounded-full text-xs font-bold text-white",
+    "bg-gradient-to-tl from-teal-950 to-teal-700 border border-teal-600",
+  ]}
+></span>
+<script>
+  function getCookieValue(name: string): number {
+    const match = document.cookie.match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)");
+    return match ? Number(match.pop()) : 0;
+  }
+
+  const el = document.getElementById("cart-count") as HTMLElement;
+  const initial = getCookieValue("cart");
+  if (initial > 0) {
+    el.textContent = String(initial);
+    el.hidden = false;
+  }
+
+  window.addEventListener("add-to-cart", () => {
+    const current = Number(el.textContent || 0);
+    el.textContent = String(current + 1);
+    if (el.hidden) el.hidden = false;
+  });
+</script>

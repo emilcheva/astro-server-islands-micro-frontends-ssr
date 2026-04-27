@@ -1,0 +1,46 @@
+# Build output
+dist/
+.output/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Test coverage
+coverage/
+*.lcov
+
+# Editor
+.vscode/
+.idea/
+
+# Playwright CLI session files
+.playwright-cli/
+.playwright/
+
+# pnpm
+.pnpm-store/
+
+# Misc
+*.tgz
+*~
+*swp
+*swo
